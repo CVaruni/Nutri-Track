@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nutri-Track</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Nutri-Track</h1>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="hhtp:log_meals.php">Log Meals</a></li>
+                <li><a href="http://localhost/nutri-track/log_exercises.php">Log Exercises</a></li>
+                <li><a href="http://localhost/nutri-track/view_progress.php">View Progress</a></li>
+                <li><a href="http://localhost/nutri-track/ai_exercise.php">AI Exercise</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h2>Your Personalized AI Fitness Tracker!</h2>
+        </section>
+
+        <div class="meal-suggestion">
+            <img src="healthy_plate.jpg" alt="Healthy Recipe Image" class="meal-image">
+            <div class="meal-content">
+                <h2>Healthy Recipe Suggestions</h2>
+                <button id="suggest-meal-btn" class="btn">Get Meal Suggestion</button>
+                <div id="recipe-name" class="recipe-output" style="display:none;"></div>
+            </div>
+        </div>
+
+        <section id="exercise-recommendation" class="exercise-section">
+            <h2>AI-Powered Exercise Recommendations</h2>
+            <form id="exercise-form" action="ai_exercise.php" method="POST" class="form">
+                <div class="form-group">
+                    <label for="goal">Goal:</label>
+                    <select name="goal" id="goal" required>
+                        <option value="weight_loss">Weight Loss</option>
+                        <option value="strength_gain">Strength Gain</option>
+                        <option value="endurance">Endurance</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="exercise_type">Exercise Type:</label>
+                    <select name="exercise_type" id="exercise_type" required>
+                        <option value="cardio">Cardio</option>
+                        <option value="strength_training">Strength Training</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn">Generate Exercise Plan</button>
+            </form>
+
+            <div id="exercise-output" class="output">
+                <h3>Recommended Exercise Plan:</h3>
+                <p id="exercise-name"></p>
+                <p id="exercise-details"></p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Nutri-Track. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+
+    <script>
+        const recipes = [
+            "Grilled Chicken Salad", "Quinoa and Veggie Stir Fry", "Baked Salmon with Asparagus",
+            "Vegetable Soup", "Chickpea Salad", "Sweet Potato and Black Bean Tacos",
+            "Zucchini Noodles with Pesto", "Avocado Toast with Poached Egg", "Vermicelli with Fruit Bowl",
+            "Poha with Fruit and Nuts", "Moong Dal Chilla with Bread", "Paneer Bhurji with Roti",
+            "Rajma Chawal with Fruits", "Sprouts Salad", "Rajma Kebab Sandwich", "Veg Kebab Meal Bowl",
+            "Okra with Roti and Cucumbers and Paneer", "Dal Makhni with Roti and Veggies and Chia Seed Pudding"
+        ];
+
+        document.getElementById("suggest-meal-btn").addEventListener("click", function() {
+            const randomRecipe = recipes[Math.floor(Math.random() * recipes.length)];
+            const recipeDiv = document.getElementById("recipe-name");
+            recipeDiv.style.display = "block";
+            recipeDiv.innerText = "Today's Suggested Recipe: " + randomRecipe;
+        });
+    </script>
+</body>
+</html>

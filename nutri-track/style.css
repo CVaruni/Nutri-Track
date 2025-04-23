@@ -1,0 +1,139 @@
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+header {
+    background-color: #1e3d58;
+    padding: 20px;
+    color: white;
+    text-align: center;
+}
+
+nav {
+    background-color: #1e3d58;
+    padding: 10px 0;
+}
+
+.nav-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.nav-links li {
+    margin: 0 15px;
+}
+
+.nav-links li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.nav-links li a:hover {
+    text-decoration: underline;
+}
+
+.hero {
+    text-align: center;
+    margin: 30px auto;
+}
+.meal-suggestion {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center; 
+    margin: 20px auto;
+    max-width: 800px;
+}
+
+.meal-image {
+    width: 250px;
+    height: auto;
+    border-radius: 8px;
+    margin-right: 20px; 
+}
+
+.meal-content {
+    text-align: left;
+}
+
+.meal-content h2 {
+    margin: 0 0 10px;
+    font-size: 1.5em;
+    color: #333;
+}
+
+.btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #b688ef;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #8b65c0;
+}
+
+.recipe-output {
+    margin-top: 20px;
+    font-size: 1.2em;
+    background-color: #e3dbea;
+    color: #c6a2ea;
+}
+
+.exercise-section {
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+}
+
+.form {
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#exercise-output {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #1e3d58;
+    color: white;
+    margin-top: 30px;
+}
