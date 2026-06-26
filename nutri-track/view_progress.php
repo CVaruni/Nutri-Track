@@ -124,31 +124,49 @@ $meal_days = $meal_dates_result->num_rows;
         <canvas id="loggedDaysChart"></canvas>
 
     </div>
+    <h3>Net Calorie Trends</h3>
+<canvas id="staircaseChart"></canvas>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const ctx = document.getElementById('staircaseChart').getContext('2d');
+    
+    // Pass the PHP arrays to JavaScript
+    const labels = <?php echo json_encode($dates); ?>;
+    const dataPoints = <?php echo json_encode($net_calories); ?>;
 
-    <script>
-        const ctx = document.getElementById('loggedDaysChart').getContext('2d');
-        const chart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['Exercise Days', 'Meal Days'], 
-                datasets: [{
-                    label: 'Number of Days Logged',
-                    data: [<?php echo $exercise_days; ?>, <?php echo $meal_days; ?>],
-                    backgroundColor: ['#4CAF50', '#FF9800'], 
-                    borderColor: ['#4CAF50', '#FF9800'],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
+    const chart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Net Calories (Intake - Burned)',
+                data: dataPoints,
+                borderColor: '#2196F3',
+                backgroundColor: 'rgba(33, 150, 243, 0.2)',
+                borderWidth: 2,
+                stepped: true, // This creates the staircase effect!
+                fill: true
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Net Calories'
+                    }
+                },
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Date'
                     }
                 }
             }
-        });
-    </script>
+        }
+    });
+</script>
 </body>
 </html>
