@@ -2,6 +2,34 @@
 include('db_connect.php');
 include('header.php');
 
+// Add this below your existing queries in view_progress.php
+$net_calories_query = "
+    SELECT 
+        date,
+        SUM(total_in) as calories_in,
+        SUM(total_out) as calories_out,
+        (SUM(total_in) - SUM(total_out)) as net_calories
+    FROM (
+        SELECT date, SUM(calories) as total_in, 0 as total_out FROM meals GROUP BY date
+        UNION ALL
+        SELECT date, 0 as total_in, SUM(calories_burned) as total_out FROM exercises GROUP BY date
+    ) combined_data
+    GROUP BY date
+    ORDER BY date ASC
+";
+
+$net_result = $conn->query($net_calories_query);
+
+$dates = [];
+$net_calories = [];
+
+if ($net_result && $net_result->num_rows > 0) {
+    while ($row = $net_result->fetch_assoc()) {
+        $dates[] = $row['date'];
+        $net_calories[] = $row['net_calories'];
+    }
+}
+
 $exercise_query = "SELECT exercise_name, duration, calories_burned, date FROM exercises ORDER BY date DESC";
 $exercise_result = $conn->query($exercise_query);
 
